@@ -36,7 +36,7 @@ class CreditCardScreen extends StatelessWidget {
             allowImplicitScrolling: true,
             loop: true,
             onTap: (index) {
-              debugPrint('the indexxxxx : $index');
+              //show bottom sheet all the way to the card thatr shows the detail of the tapped index info
             },
             itemCount: cardNumbers.length,
             layout: SwiperLayout.TINDER,
