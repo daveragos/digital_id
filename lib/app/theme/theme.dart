@@ -34,4 +34,10 @@ class AppTheme {
       popupMenuOpacity: 0.95,
     ),
   );
+
+  static final dark = FlexThemeData.dark(
+      scheme: FlexScheme.orangeM3,
+      surfaceMode: FlexSurfaceMode.highScaffoldLowSurfacesVariantDialog,
+      blendLevel: 40,
+      appBarStyle: FlexAppBarStyle.primary);
 }

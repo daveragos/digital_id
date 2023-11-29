@@ -8,6 +8,6 @@ final router = GoRouter(
     GoRoute(
         path: PathConst.digitalIdPath,
         name: 'home_card',
-        builder: (context, state) => const HomeCardPage()),
+        builder: (context, state) => CreditCardScreen()),
   ],
 );
