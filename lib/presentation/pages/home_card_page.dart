@@ -38,11 +38,6 @@ class CreditCardScreen extends ConsumerWidget {
       body: Column(
         children: [
           Swiper(
-            onIndexChanged: (index) {
-              // //print the user on that index
-              // final usernow = user[index];
-              // print('the selected user is : $usernow');
-            },
             allowImplicitScrolling: true,
             loop: true,
             onTap: (index) {
@@ -51,21 +46,26 @@ class CreditCardScreen extends ConsumerWidget {
               showModalBottomSheet(
                 context: context,
                 builder: (context) {
-                  return const Wrap(
-                    children: [
-                      ListTile(
-                        leading: Icon(Icons.share),
-                        title: Text('Share'),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.copy),
-                        title: Text('Copy Link'),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.edit),
-                        title: Text('Edit'),
-                      ),
-                    ],
+                  final usered = user[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 28.0, vertical: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const CircleAvatar(child: Icon(Icons.person)),
+                        ListTile(title: Text('Name : ${usered.name}')),
+                        ListTile(
+                          title: Text('Name : ${usered.role}'),
+                        ),
+                        ListTile(
+                          title: Text('Name : ${usered.phoneNumber}'),
+                        ),
+                        ElevatedButton(
+                            onPressed: () {}, child: const Text('Scan Me'))
+                      ],
+                    ),
                   );
                 },
               );
@@ -75,10 +75,7 @@ class CreditCardScreen extends ConsumerWidget {
             itemWidth: 385,
             itemHeight: 225,
             itemBuilder: (BuildContext context, int index) {
-              return CreditCardWidget(
-                cardNumber: cardNumbers[index],
-                cardHolder: cardHolders[index],
-              );
+              return CardWidget(user: user[index]);
             },
           ),
         ],

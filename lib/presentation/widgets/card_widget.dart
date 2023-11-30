@@ -1,14 +1,14 @@
+import 'package:digital_id/domain/entities/user.dart';
 import 'package:flutter/material.dart';
 
-class CreditCardWidget extends StatelessWidget {
-  final String cardNumber;
-  final String cardHolder;
+class CardWidget extends StatelessWidget {
+  final User user;
 
-  const CreditCardWidget(
-      {super.key, required this.cardNumber, required this.cardHolder});
+  const CardWidget({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
+    final style = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
     return Card(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
@@ -18,16 +18,11 @@ class CreditCardWidget extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Text(
-                      'Omishtu-Joy',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                  ),
+                  Text('Omishtu-Joy',
+                      textAlign: TextAlign.center, style: style),
                   SizedBox(
                     width: 10.0,
                   ),
@@ -46,26 +41,11 @@ class CreditCardWidget extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            cardNumber,
-                            style: const TextStyle(fontSize: 20.0),
-                          ),
-                          Text(
-                            cardHolder,
-                            style: const TextStyle(fontSize: 20.0),
-                          ),
-                          Text(
-                            cardHolder,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            cardNumber,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          Text(user.name, style: style),
+                          Text(user.email, style: style),
+                          Text(user.address, style: style),
+                          Text(user.role, style: style),
+                          Text(user.phoneNumber, style: style),
                         ],
                       ),
                     ),
