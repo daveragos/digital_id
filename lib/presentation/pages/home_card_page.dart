@@ -20,6 +20,37 @@ class CreditCardScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Credit Cards'),
       ),
+      //implement drawer
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: color.primaryContainer,
+              ),
+              child: Text(
+                'Digital ID',
+                style: TextStyle(color: color.onBackground),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profile'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           Swiper(
