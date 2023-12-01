@@ -7,6 +7,7 @@ class UserLocalDBImpl extends UserLocalDB {
     // return dummy data
     List<UserModel> dummy = [
       UserModel(
+        id: 1,
         name: 'dave ragoose',
         email: 'email@gmail.com',
         address: 'here and there',
@@ -14,6 +15,7 @@ class UserLocalDBImpl extends UserLocalDB {
         phoneNumber: '09******',
       ),
       UserModel(
+        id: 2,
         name: 'tige qufaa',
         email: 'tige@omi.joy',
         address: 'there',
@@ -21,6 +23,7 @@ class UserLocalDBImpl extends UserLocalDB {
         phoneNumber: '09******',
       ),
       UserModel(
+        id: 3,
         name: 'ABDI waki',
         email: 'waki@omi.joy',
         address: 'just there',
@@ -28,6 +31,7 @@ class UserLocalDBImpl extends UserLocalDB {
         phoneNumber: '09******',
       ),
       UserModel(
+        id: 4,
         name: 'beki thin',
         email: 'beki@omi.joy',
         address: 'there i guess',
@@ -35,6 +39,7 @@ class UserLocalDBImpl extends UserLocalDB {
         phoneNumber: '09******',
       ),
       UserModel(
+        id: 5,
         name: 'akram bdu',
         email: 'akram@omi.joy',
         address: 'here and there',
@@ -42,6 +47,7 @@ class UserLocalDBImpl extends UserLocalDB {
         phoneNumber: '09******',
       ),
       UserModel(
+        id: 6,
         name: 'some one',
         email: 'tige@omi.joy',
         address: 'here',
@@ -49,6 +55,7 @@ class UserLocalDBImpl extends UserLocalDB {
         phoneNumber: '09******',
       ),
       UserModel(
+        id: 7,
         name: 'dave ragoose',
         email: 'tige@omi.joy',
         address: 'there',

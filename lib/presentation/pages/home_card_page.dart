@@ -20,7 +20,6 @@ class CreditCardScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Credit Cards'),
       ),
-      //implement drawer
       drawer: Drawer(
         child: ListView(
           children: [
@@ -80,7 +79,7 @@ class CreditCardScreen extends ConsumerWidget {
                         ),
                         ElevatedButton(
                             onPressed: () {
-                              context.go('/todos/${user[index]}');
+                              context.go('/home_card/${user[index]}');
                             },
                             child: const Text('Scan Me'))
                       ],

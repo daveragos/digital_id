@@ -13,15 +13,11 @@ final router = GoRouter(
         path: PathConst.digitalIdPath,
         name: 'home_card',
         builder: (context, state) => CreditCardScreen(),
-        routes: <RouteBase>[
+        routes: [
           GoRoute(
             path: PathConst.userPath,
             builder: (context, state) {
-              final userJson = state.pathParameters['user'];
-              // Convert the userJson string to a Map
-              final userMap = jsonDecode(userJson!);
-              // Convert the Map to a User object
-              final user = User.fromJson(userMap);
+              User user = state.pathParameters['user'] as User;
               return QRPage(user: user);
             },
           ),
