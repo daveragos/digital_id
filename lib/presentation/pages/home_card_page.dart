@@ -7,24 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
+import 'package:go_router/go_router.dart';
 
 class CreditCardScreen extends ConsumerWidget {
-  final List<String> cardNumbers = [
-    "**** **** **** 1234",
-    "**** **** **** 5678",
-    "**** **** **** 9012",
-    "**** **** **** 3456",
-    "**** **** **** 7890"
-  ];
-
-  final List<String> cardHolders = [
-    "John Doe",
-    "Jane Smith",
-    "Alice Johnson",
-    "Bob Williams",
-    "John Doer"
-  ];
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userStateNotifierProvider);
@@ -63,14 +48,17 @@ class CreditCardScreen extends ConsumerWidget {
                           title: Text('Name : ${usered.phoneNumber}'),
                         ),
                         ElevatedButton(
-                            onPressed: () {}, child: const Text('Scan Me'))
+                            onPressed: () {
+                              context.go('/todos/${user[index]}');
+                            },
+                            child: const Text('Scan Me'))
                       ],
                     ),
                   );
                 },
               );
             },
-            itemCount: cardNumbers.length,
+            itemCount: user.length,
             layout: SwiperLayout.TINDER,
             itemWidth: 385,
             itemHeight: 225,
