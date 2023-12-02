@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:digital_id/domain/entities/user.dart';
 import 'package:digital_id/domain/usecases/module.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

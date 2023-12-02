@@ -1,10 +1,9 @@
 import 'package:digital_id/app/utils/extensions.dart';
-import 'package:digital_id/domain/usecases/module.dart';
+import 'package:digital_id/presentation/pages/qr_page.dart';
 import 'package:digital_id/presentation/providers/providers.dart';
 import 'package:digital_id/presentation/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:math' as math;
 
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +12,7 @@ class CreditCardScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userStateNotifierProvider);
-
+    int currentQR = 0;
     final color = context.colorScheme;
     return Scaffold(
       backgroundColor: color.secondaryContainer,
@@ -50,11 +49,15 @@ class CreditCardScreen extends ConsumerWidget {
           ],
         ),
       ),
-      body: Column(
+      body: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
         children: [
           Swiper(
             allowImplicitScrolling: true,
             loop: true,
+            onIndexChanged: (index) {
+              currentQR = index;
+            },
             onTap: (index) {
               //show bottom sheet all the way to the card that shows the detail of the tapped index info
 
@@ -95,6 +98,11 @@ class CreditCardScreen extends ConsumerWidget {
             itemBuilder: (BuildContext context, int index) {
               return CardWidget(user: user[index]);
             },
+          ),
+          Expanded(
+            child: QRPage(
+              userId: currentQR,
+            ),
           ),
         ],
       ),
