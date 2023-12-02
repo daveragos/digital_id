@@ -69,6 +69,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 emailController.text,
                                 passwordController.text,
                               );
+                          ref.read(userProvider.notifier).state = user;
                           context.go(PathConst.digitalIdPath);
                         }
                       },

@@ -8,6 +8,7 @@ part 'company.g.dart';
 class Company with _$Company {
   factory Company({
     required String name,
+    required String role,
     required String email,
     required String address,
     required String phoneNumber,

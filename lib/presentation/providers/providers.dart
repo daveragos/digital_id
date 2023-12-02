@@ -1,3 +1,4 @@
+import 'package:digital_id/domain/entities/company.dart';
 import 'package:digital_id/domain/entities/user.dart';
 import 'package:digital_id/domain/usecases/module.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,3 +22,18 @@ class UserStateNotifier extends StateNotifier<List<User>> {
 final userStateNotifierProvider =
     StateNotifierProvider<UserStateNotifier, List<User>>(
         (ref) => UserStateNotifier(ref));
+
+final userProvider = StateProvider<User>((ref) {
+  return User(
+    id: 0,
+    name: 'name',
+    email: 'email',
+    address: 'address',
+    role: 'role',
+    phoneNumber: 'phoneNumber',
+  );
+});
+
+final companyProvider = StateProvider<List<Company>>((ref) {
+  return [];
+});

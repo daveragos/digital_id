@@ -1,14 +1,17 @@
-import 'package:digital_id/domain/entities/user.dart';
+import 'package:digital_id/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CardWidget extends StatelessWidget {
-  final User user;
+class CardWidget extends ConsumerWidget {
+  final int index;
 
-  const CardWidget({super.key, required this.user});
+  const CardWidget({super.key, required this.index});
 
   @override
-  Widget build(BuildContext context) {
-    final style = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userProvider);
+    final companies = ref.watch(companyProvider);
+    const style = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
     return Card(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
@@ -21,12 +24,14 @@ class CardWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Omishtu-Joy',
+                  Text(companies[index].name,
                       textAlign: TextAlign.center, style: style),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
-                  Icon(Icons.branding_watermark)
+                  const Icon(
+                    Icons.devices_other_outlined,
+                  )
                 ],
               ),
               Expanded(
@@ -41,11 +46,17 @@ class CardWidget extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(user.name, style: style),
-                          Text(user.email, style: style),
-                          Text(user.address, style: style),
-                          Text(user.role, style: style),
-                          Text(user.phoneNumber, style: style),
+                          Text('Name : ${user.name}', style: style),
+                          Text('Role : ${companies[index].role}', style: style),
+                          Text('Email: ${user.email}', style: style),
+                          Text('Phone Number : ${user.phoneNumber}',
+                              style: style),
+                          Text(
+                            'Expiration Date : ${user.role}',
+                            style: style.copyWith(
+                              color: Colors.red,
+                            ),
+                          ),
                         ],
                       ),
                     ),

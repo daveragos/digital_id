@@ -21,6 +21,7 @@ Company _$CompanyFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Company {
   String get name => throw _privateConstructorUsedError;
+  String get role => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
@@ -35,7 +36,12 @@ abstract class $CompanyCopyWith<$Res> {
   factory $CompanyCopyWith(Company value, $Res Function(Company) then) =
       _$CompanyCopyWithImpl<$Res, Company>;
   @useResult
-  $Res call({String name, String email, String address, String phoneNumber});
+  $Res call(
+      {String name,
+      String role,
+      String email,
+      String address,
+      String phoneNumber});
 }
 
 /// @nodoc
@@ -52,6 +58,7 @@ class _$CompanyCopyWithImpl<$Res, $Val extends Company>
   @override
   $Res call({
     Object? name = null,
+    Object? role = null,
     Object? email = null,
     Object? address = null,
     Object? phoneNumber = null,
@@ -60,6 +67,10 @@ class _$CompanyCopyWithImpl<$Res, $Val extends Company>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
@@ -84,7 +95,12 @@ abstract class _$$CompanyImplCopyWith<$Res> implements $CompanyCopyWith<$Res> {
       __$$CompanyImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String email, String address, String phoneNumber});
+  $Res call(
+      {String name,
+      String role,
+      String email,
+      String address,
+      String phoneNumber});
 }
 
 /// @nodoc
@@ -99,6 +115,7 @@ class __$$CompanyImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? role = null,
     Object? email = null,
     Object? address = null,
     Object? phoneNumber = null,
@@ -107,6 +124,10 @@ class __$$CompanyImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
@@ -129,6 +150,7 @@ class __$$CompanyImplCopyWithImpl<$Res>
 class _$CompanyImpl with DiagnosticableTreeMixin implements _Company {
   _$CompanyImpl(
       {required this.name,
+      required this.role,
       required this.email,
       required this.address,
       required this.phoneNumber});
@@ -139,6 +161,8 @@ class _$CompanyImpl with DiagnosticableTreeMixin implements _Company {
   @override
   final String name;
   @override
+  final String role;
+  @override
   final String email;
   @override
   final String address;
@@ -147,7 +171,7 @@ class _$CompanyImpl with DiagnosticableTreeMixin implements _Company {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Company(name: $name, email: $email, address: $address, phoneNumber: $phoneNumber)';
+    return 'Company(name: $name, role: $role, email: $email, address: $address, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -156,6 +180,7 @@ class _$CompanyImpl with DiagnosticableTreeMixin implements _Company {
     properties
       ..add(DiagnosticsProperty('type', 'Company'))
       ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('role', role))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('address', address))
       ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
@@ -167,6 +192,7 @@ class _$CompanyImpl with DiagnosticableTreeMixin implements _Company {
         (other.runtimeType == runtimeType &&
             other is _$CompanyImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.role, role) || other.role == role) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.phoneNumber, phoneNumber) ||
@@ -176,7 +202,7 @@ class _$CompanyImpl with DiagnosticableTreeMixin implements _Company {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, email, address, phoneNumber);
+      Object.hash(runtimeType, name, role, email, address, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -195,6 +221,7 @@ class _$CompanyImpl with DiagnosticableTreeMixin implements _Company {
 abstract class _Company implements Company {
   factory _Company(
       {required final String name,
+      required final String role,
       required final String email,
       required final String address,
       required final String phoneNumber}) = _$CompanyImpl;
@@ -203,6 +230,8 @@ abstract class _Company implements Company {
 
   @override
   String get name;
+  @override
+  String get role;
   @override
   String get email;
   @override
