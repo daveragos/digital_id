@@ -79,7 +79,7 @@ class CreditCardScreen extends ConsumerWidget {
                         ),
                         ElevatedButton(
                             onPressed: () {
-                              context.go('/home_card/${user[index]}');
+                              context.go('/home_card/${user[index].id}');
                             },
                             child: const Text('Scan Me'))
                       ],

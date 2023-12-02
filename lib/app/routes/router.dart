@@ -17,8 +17,8 @@ final router = GoRouter(
           GoRoute(
             path: PathConst.userPath,
             builder: (context, state) {
-              User user = state.pathParameters['user'] as User;
-              return QRPage(user: user);
+              final user = state.pathParameters['user'];
+              return QRPage(userId: user!);
             },
           ),
         ]),
