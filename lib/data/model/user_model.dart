@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:digital_id/domain/entities/user.dart';
 
 class UserModel {
@@ -36,4 +39,31 @@ class UserModel {
       phoneNumber: phoneNumber,
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'email': email,
+      'address': address,
+      'role': role,
+      'phoneNumber': phoneNumber,
+    };
+  }
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      id: map['id'] as int,
+      name: map['name'] as String,
+      email: map['email'] as String,
+      address: map['address'] as String,
+      role: map['role'] as String,
+      phoneNumber: map['phoneNumber'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

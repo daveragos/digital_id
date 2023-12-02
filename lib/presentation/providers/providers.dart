@@ -12,6 +12,10 @@ class UserStateNotifier extends StateNotifier<List<User>> {
   Future<void> getUsers() async {
     state = await getUsersProvider.call();
   }
+
+  Future<User> login(String email, String password) async {
+    return await ref.read(loginProvider).call(email, password);
+  }
 }
 
 final userStateNotifierProvider =
