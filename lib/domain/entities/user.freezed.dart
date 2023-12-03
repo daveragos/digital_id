@@ -24,7 +24,6 @@ mixin _$User {
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,12 +37,7 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String email,
-      String address,
-      String role,
-      String phoneNumber});
+      {int id, String name, String email, String address, String phoneNumber});
 }
 
 /// @nodoc
@@ -63,7 +57,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? name = null,
     Object? email = null,
     Object? address = null,
-    Object? role = null,
     Object? phoneNumber = null,
   }) {
     return _then(_value.copyWith(
@@ -83,10 +76,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -103,12 +92,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String email,
-      String address,
-      String role,
-      String phoneNumber});
+      {int id, String name, String email, String address, String phoneNumber});
 }
 
 /// @nodoc
@@ -125,7 +109,6 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? name = null,
     Object? email = null,
     Object? address = null,
-    Object? role = null,
     Object? phoneNumber = null,
   }) {
     return _then(_$UserImpl(
@@ -145,10 +128,6 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -165,7 +144,6 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
       required this.name,
       required this.email,
       required this.address,
-      required this.role,
       required this.phoneNumber});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
@@ -180,13 +158,11 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
   @override
   final String address;
   @override
-  final String role;
-  @override
   final String phoneNumber;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, name: $name, email: $email, address: $address, role: $role, phoneNumber: $phoneNumber)';
+    return 'User(id: $id, name: $name, email: $email, address: $address, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -198,7 +174,6 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('address', address))
-      ..add(DiagnosticsProperty('role', role))
       ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
   }
 
@@ -211,7 +186,6 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.role, role) || other.role == role) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber));
   }
@@ -219,7 +193,7 @@ class _$UserImpl with DiagnosticableTreeMixin implements _User {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, email, address, role, phoneNumber);
+      Object.hash(runtimeType, id, name, email, address, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -241,7 +215,6 @@ abstract class _User implements User {
       required final String name,
       required final String email,
       required final String address,
-      required final String role,
       required final String phoneNumber}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -254,8 +227,6 @@ abstract class _User implements User {
   String get email;
   @override
   String get address;
-  @override
-  String get role;
   @override
   String get phoneNumber;
   @override

@@ -1,6 +1,8 @@
 import 'package:digital_id/app/constants/path_const.dart';
 import 'package:digital_id/app/utils/extensions.dart';
 import 'package:digital_id/data/sources/module.dart';
+import 'package:digital_id/domain/entities/company.dart';
+import 'package:digital_id/domain/entities/user.dart';
 import 'package:digital_id/presentation/pages/home_card_page.dart';
 import 'package:digital_id/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
@@ -18,27 +20,95 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  final List<Company> listOfCompanies = [
+    Company(
+      name: 'google',
+      role: 'ceo',
+      email: 'google@gmail.com',
+      address: 'silicon',
+      phoneNumber: '09****09',
+    ),
+    Company(
+      name: 'facebook',
+      role: 'marketting',
+      email: 'facebook@gmail.com',
+      address: 'silicon',
+      phoneNumber: '09****09',
+    ),
+    Company(
+      name: 'amazon',
+      role: 'sales',
+      email: 'amazon@gmail.com',
+      address: 'silicon',
+      phoneNumber: '09****09',
+    ),
+    Company(
+      name: 'apple',
+      role: 'cto',
+      email: 'apple@gmail.com',
+      address: 'silicon',
+      phoneNumber: '09****09',
+    ),
+    Company(
+      name: 'microsoft',
+      role: 'freelancer',
+      email: 'microsoft@gmail.com',
+      address: 'silicon',
+      phoneNumber: '09****09',
+    ),
+    Company(
+      name: 'twitter',
+      role: 'intern',
+      email: 'twitter@gmail.com',
+      address: 'silicon',
+      phoneNumber: '09****09',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
+    final text = context.textTheme;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Digital ID'),
-      ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: context.colorScheme.primary,
+      backgroundColor: context.colorScheme.primary,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'DIGITAL ID',
+              style: text.displayLarge,
             ),
-            child: Center(
+            Container(
+              padding: const EdgeInsets.all(10),
+              height: 400,
+              width: 300,
+              decoration: BoxDecoration(
+                color: context.colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: Form(
+                key: _formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Text('Digital ID'),
-                    const Text('Login'),
+                    Text(
+                      'Login',
+                      style: text.headlineLarge,
+                    ),
                     TextFormField(
                       controller: emailController,
+                      onTapOutside: (event) =>
+                          FocusManager.instance.primaryFocus?.unfocus(),
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder(),
+                        errorBorder: OutlineInputBorder(),
+                        errorStyle: TextStyle(color: Colors.red),
+                        hintText: 'Enter your email',
+                      ),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -50,6 +120,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     TextFormField(
                       controller: passwordController,
                       obscureText: true,
+                      decoration: const InputDecoration(
+                        labelText: 'Password',
+                        prefixIcon: Icon(Icons.lock),
+                        border: OutlineInputBorder(),
+                        errorBorder: OutlineInputBorder(),
+                        errorStyle: TextStyle(color: Colors.red),
+                        hintText: 'Enter your password',
+                      ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
@@ -60,15 +138,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Processing Data')),
                           );
-                          final user = await ref
-                              .read(userStateNotifierProvider.notifier)
-                              .login(
-                                emailController.text,
-                                passwordController.text,
-                              );
+                          // final user = await ref
+                          //     .read(userStateNotifierProvider.notifier)
+                          //     .login(
+                          //       emailController.text,
+                          //       passwordController.text,
+                          //     );
+                          final user = User(
+                            id: 1,
+                            name: 'John Doe',
+                            email: emailController.text,
+                            address: 'Ethiopia',
+                            phoneNumber: '0123456789',
+                          );
+                          ref.read(companyProvider.notifier).state =
+                              listOfCompanies;
                           ref.read(userProvider.notifier).state = user;
                           context.go(PathConst.digitalIdPath);
                         }
@@ -76,6 +164,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       child: const Text('Login'),
                     ),
                     ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            context.colorScheme.background,
+                          ),
+                          foregroundColor: MaterialStateProperty.all(
+                            context.colorScheme.primary,
+                          )),
                       onPressed: () {},
                       child: const Text('Sign Up'),
                     ),
@@ -83,8 +178,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
               ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

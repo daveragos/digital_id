@@ -11,7 +11,6 @@ class User with _$User {
     required String name,
     required String email,
     required String address,
-    required String role,
     required String phoneNumber,
   }) = _User;
 

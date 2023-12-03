@@ -2,18 +2,16 @@ import 'package:digital_id/app/constants/api_const.dart';
 import 'package:dio/dio.dart';
 
 class Api {
-  final dio = Dio(BaseOptions(
-    baseUrl: ApiConst.api,
-  ));
-
   Future<Response> login(String email, String password) async {
-    return await dio.post(
-      ApiConst.login,
+    final response = await Dio().post(
+      ApiConst.api + ApiConst.login,
       data: {
         'email': email,
         'password': password,
       },
     );
+    print('RESPONSE ========== $response');
+    return response;
   }
   // Future<Response> register(String name, String email, String password) async {
   //   return await dio.post(

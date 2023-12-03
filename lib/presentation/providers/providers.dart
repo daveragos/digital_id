@@ -29,9 +29,12 @@ final userProvider = StateProvider<User>((ref) {
     name: 'name',
     email: 'email',
     address: 'address',
-    role: 'role',
     phoneNumber: 'phoneNumber',
   );
+});
+
+final selectedCompanyProvider = StateProvider<int>((ref) {
+  return 0;
 });
 
 final companyProvider = StateProvider<List<Company>>((ref) {
