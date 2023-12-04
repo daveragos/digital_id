@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CardWidget extends ConsumerWidget {
-  final int index;
-
-  const CardWidget({Key? key, required this.index}) : super(key: key);
+  const CardWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,6 +16,7 @@ class CardWidget extends ConsumerWidget {
     const style = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
     final color = context.colorScheme;
     final textStyle = context.textTheme;
+    final index = ref.watch(selectedCompanyProvider);
 
     return Card(
       elevation: 4.0,

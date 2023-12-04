@@ -1,6 +1,5 @@
 import 'package:digital_id/domain/entities/user.dart';
 import 'package:digital_id/domain/repositories/user_repo.dart';
-import 'package:digital_id/domain/usecases/get_user.dart';
 import 'package:digital_id/domain/usecases/login.dart';
 
 class LoginUseCaseImpl extends LoginUseCase {

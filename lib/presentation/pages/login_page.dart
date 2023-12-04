@@ -1,9 +1,7 @@
 import 'package:digital_id/app/constants/path_const.dart';
 import 'package:digital_id/app/utils/extensions.dart';
-import 'package:digital_id/data/sources/module.dart';
 import 'package:digital_id/domain/entities/company.dart';
 import 'package:digital_id/domain/entities/user.dart';
-import 'package:digital_id/presentation/pages/home_card_page.dart';
 import 'package:digital_id/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

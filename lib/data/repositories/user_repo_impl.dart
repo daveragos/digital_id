@@ -3,7 +3,6 @@ import 'package:digital_id/data/sources/api/api.dart';
 import 'package:digital_id/data/sources/local/user_localdb.dart';
 import 'package:digital_id/domain/entities/user.dart';
 import 'package:digital_id/domain/repositories/user_repo.dart';
-import 'package:dio/dio.dart';
 
 class UserRepoImpl extends UserRepo {
   UserRepoImpl(this.userLocalDB, this.api);

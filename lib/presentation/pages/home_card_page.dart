@@ -1,3 +1,4 @@
+import 'package:digital_id/app/constants/path_const.dart';
 import 'package:digital_id/app/utils/extensions.dart';
 import 'package:digital_id/presentation/widgets/qr_widget.dart';
 import 'package:digital_id/presentation/providers/providers.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
+import 'package:go_router/go_router.dart';
 
 class CreditCardScreen extends ConsumerStatefulWidget {
   const CreditCardScreen({super.key});
@@ -29,7 +31,7 @@ class _CreditCardScreenState extends ConsumerState<CreditCardScreen> {
         centerTitle: true,
         title: const Text('Digital Cards'),
       ),
-      drawer: _buildDrawer(color),
+      drawer: _buildDrawer(color, context),
       body: ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
@@ -47,14 +49,21 @@ class _CreditCardScreenState extends ConsumerState<CreditCardScreen> {
                 context: context,
                 builder: (context) {
                   final company = companies[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 28.0, vertical: 10),
+                  return Container(
+                    decoration: BoxDecoration(
+                        color: color.secondaryContainer,
+                        borderRadius: BorderRadius.circular(20.0)),
+                    padding: const EdgeInsets.symmetric(horizontal: 28.0),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const CircleAvatar(child: Icon(Icons.person)),
+                        const CircleAvatar(
+                            radius: 30,
+                            child: Icon(
+                              Icons.join_right,
+                              size: 50,
+                            )),
                         ListTile(title: Text('Name : ${company.name}')),
                         ListTile(
                           title: Text('Email : ${company.email}'),
@@ -75,16 +84,16 @@ class _CreditCardScreenState extends ConsumerState<CreditCardScreen> {
             itemWidth: 400,
             itemHeight: 250,
             itemBuilder: (BuildContext context, int index) {
-              return CardWidget(index: index);
+              return CardWidget();
             },
           ),
-          QRWidget(),
+          const QRWidget(),
         ],
       ),
     );
   }
 
-  Drawer _buildDrawer(ColorScheme color) {
+  Drawer _buildDrawer(ColorScheme color, BuildContext context) {
     return Drawer(
       child: ListView(
         children: [
@@ -94,13 +103,14 @@ class _CreditCardScreenState extends ConsumerState<CreditCardScreen> {
             ),
             child: Column(
               children: [
-                CircleAvatar(
-                  child: Icon(Icons.qr_code,
-                      size: 50, color: Colors.white.withOpacity(0.8)),
-                ),
                 Text(
                   'Digital ID',
-                  style: TextStyle(color: color.onBackground),
+                  style: context.textTheme.displayMedium,
+                ),
+                CircleAvatar(
+                  radius: 35,
+                  child: Icon(Icons.qr_code,
+                      size: 50, color: Colors.white.withOpacity(0.8)),
                 ),
               ],
             ),
@@ -108,12 +118,16 @@ class _CreditCardScreenState extends ConsumerState<CreditCardScreen> {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
-            onTap: () {},
+            onTap: () {
+              context.pop();
+            },
           ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
-            onTap: () {},
+            onTap: () {
+              context.push(PathConst.profilePath);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.settings),

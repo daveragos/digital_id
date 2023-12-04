@@ -17,7 +17,7 @@ class QRWidget extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SizedBox(
-          height: 20,
+          height: 50,
         ),
         SizedBox(
           width: 200,

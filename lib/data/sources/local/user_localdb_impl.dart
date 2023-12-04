@@ -11,7 +11,6 @@ class UserLocalDBImpl extends UserLocalDB {
         name: 'dave ragoose',
         email: 'email@gmail.com',
         address: 'here and there',
-        role: 'freelance',
         phoneNumber: '09******',
       ),
       UserModel(
@@ -19,7 +18,6 @@ class UserLocalDBImpl extends UserLocalDB {
         name: 'tige qufaa',
         email: 'tige@omi.joy',
         address: 'there',
-        role: 'CEO',
         phoneNumber: '09******',
       ),
       UserModel(
@@ -27,7 +25,6 @@ class UserLocalDBImpl extends UserLocalDB {
         name: 'ABDI waki',
         email: 'waki@omi.joy',
         address: 'just there',
-        role: 'cto',
         phoneNumber: '09******',
       ),
       UserModel(
@@ -35,7 +32,6 @@ class UserLocalDBImpl extends UserLocalDB {
         name: 'beki thin',
         email: 'beki@omi.joy',
         address: 'there i guess',
-        role: 'idk really',
         phoneNumber: '09******',
       ),
       UserModel(
@@ -43,7 +39,6 @@ class UserLocalDBImpl extends UserLocalDB {
         name: 'akram bdu',
         email: 'akram@omi.joy',
         address: 'here and there',
-        role: 'teach',
         phoneNumber: '09******',
       ),
       UserModel(
@@ -51,7 +46,6 @@ class UserLocalDBImpl extends UserLocalDB {
         name: 'some one',
         email: 'tige@omi.joy',
         address: 'here',
-        role: 'freelance',
         phoneNumber: '09******',
       ),
       UserModel(
@@ -59,7 +53,6 @@ class UserLocalDBImpl extends UserLocalDB {
         name: 'dave ragoose',
         email: 'tige@omi.joy',
         address: 'there',
-        role: 'dev',
         phoneNumber: '09******',
       ),
     ];
