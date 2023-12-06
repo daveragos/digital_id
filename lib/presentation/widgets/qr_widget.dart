@@ -8,7 +8,6 @@ class QRWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final color = context.colorScheme;
     final company = ref.watch(companyProvider);
     final companyIndex = ref.watch(selectedCompanyProvider);
     final selectedcompany = company[companyIndex];

@@ -19,7 +19,10 @@ class UserRepoImpl extends UserRepo {
   Future<User> login(String email, String password) async {
     final response = await api.login(email, password);
     if (response.statusCode == 200) {
-      final userModel = UserModel.fromJson(response.data);
+      // Extract the 'user' map from the response data
+      final userMap = response.data['user'];
+      // Pass the 'user' map to UserModel.fromJson
+      final userModel = UserModel.fromJson(userMap);
       return userModel.toEntity();
     } else {
       throw Exception('Failed to login');

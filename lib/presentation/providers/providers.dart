@@ -23,7 +23,7 @@ final userStateNotifierProvider =
     StateNotifierProvider<UserStateNotifier, List<User>>(
         (ref) => UserStateNotifier(ref));
 
-final userProvider = StateProvider<User>((ref) {
+final userStateProvider = StateProvider<User>((ref) {
   return User(
     id: 0,
     name: 'name',

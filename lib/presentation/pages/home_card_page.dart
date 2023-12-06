@@ -22,8 +22,6 @@ class _CreditCardScreenState extends ConsumerState<CreditCardScreen> {
     // final user = ref.watch(userStateNotifierProvider);
     final companies = ref.watch(companyProvider.notifier).state;
     final selectedCompany = ref.watch(selectedCompanyProvider);
-
-    int currentQR = 0;
     final color = context.colorScheme;
     return Scaffold(
       backgroundColor: color.secondaryContainer,
@@ -84,7 +82,7 @@ class _CreditCardScreenState extends ConsumerState<CreditCardScreen> {
             itemWidth: 400,
             itemHeight: 250,
             itemBuilder: (BuildContext context, int index) {
-              return CardWidget();
+              return const CardWidget();
             },
           ),
           const QRWidget(),

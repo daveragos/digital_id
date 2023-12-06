@@ -1,7 +1,11 @@
+// ignore_for_file: avoid_print
+
+import 'package:digital_id/app/constants/api_const.dart';
 import 'package:digital_id/app/constants/path_const.dart';
+import 'package:digital_id/app/utils/api_post.dart';
 import 'package:digital_id/app/utils/extensions.dart';
+import 'package:digital_id/data/model/user_model.dart';
 import 'package:digital_id/domain/entities/company.dart';
-import 'package:digital_id/domain/entities/user.dart';
 import 'package:digital_id/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -66,6 +70,71 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    void login({required context}) async {
+      if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Please fill all the fields'),
+          ),
+        );
+      } else if (!emailController.text.contains('@') ||
+          !emailController.text.contains('.')) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Please enter a valid email'),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Logging You In...'),
+          ),
+        );
+        //! uploading to the server
+
+        final result = await APIPost().postRequest(
+            route: ApiConst.login,
+            data: {
+              'email': emailController.text.toString(),
+              'password': passwordController.text.toString(),
+            },
+            context: context);
+        if (result != null) {
+          // print(jsonDecode(result.toString()));
+          if (result.statusCode == 200) {
+            print('just the data from response :${result.data['user']}');
+            // Parse the JSON response
+            Map<String, dynamic> responseMap = result.data;
+            // Extract the username
+            // Convert and extract the user object
+            final usermodel = UserModel.fromMap(responseMap['user']);
+            final user = usermodel.toEntity();
+            ref.watch(userStateProvider.notifier).state = user;
+            ref.read(companyProvider.notifier).state = listOfCompanies;
+            context.go(PathConst.digitalIdPath);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(result.data['message']),
+              ),
+            );
+          }
+          //handle if the response is 401
+          else if (result.statusCode == 401) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(result.data['message']),
+              ),
+            );
+          }
+        } else {
+          GoRouter.of(context).go('/');
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Error occured please try again'),
+          ));
+        }
+      }
+    }
+
     final text = context.textTheme;
     return Scaffold(
       backgroundColor: context.colorScheme.primary,
@@ -137,26 +206,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
-                          );
-                          // final user = await ref
-                          //     .read(userStateNotifierProvider.notifier)
-                          //     .login(
-                          //       emailController.text,
-                          //       passwordController.text,
-                          //     );
-                          final user = User(
-                            id: 1,
-                            name: 'John Doe',
-                            email: emailController.text,
-                            address: 'Ethiopia',
-                            phoneNumber: '0123456789',
-                          );
-                          ref.read(companyProvider.notifier).state =
-                              listOfCompanies;
-                          ref.read(userProvider.notifier).state = user;
-                          context.go(PathConst.digitalIdPath);
+                          login(context: context);
                         }
                       },
                       child: const Text('Login'),
@@ -182,79 +232,3 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
   }
 }
-
-// import 'package:digital_id/presentation/pages/home_card_page.dart';
-// import 'package:digital_id/presentation/providers/providers.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_login/flutter_login.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// const users = {
-//   'dribbble@gmail.com': '12345',
-//   'hunter@gmail.com': 'hunter',
-// };
-
-// class LoginScreen extends ConsumerStatefulWidget {
-//   const LoginScreen({super.key});
-
-//   @override
-//   ConsumerState<LoginScreen> createState() => _LoginScreenState();
-// }
-
-// class _LoginScreenState extends ConsumerState<LoginScreen> {
-  
-//   @override
-//   void initState() {
-//     super.initState();
-    
-    
-//   }
-
-//   Duration get loginTime => const Duration(milliseconds: 2250);
-
-//   Future<String?> _authUser(LoginData data) {
-//     debugPrint('Name: ${data.name}, Password: ${data.password}');
-//     return Future.delayed(loginTime).then((_) {
-//       if (!users.containsKey(data.name)) {
-//         return 'User not exists';
-//       }
-//       if (users[data.name] != data.password) {
-//         return 'Password does not match';
-//       }
-//       return null;
-//     });
-//   }
-
-//   Future<String?> _signupUser(SignupData data) {
-//     debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
-//     return Future.delayed(loginTime).then((_) {
-//       return null;
-//     });
-//   }
-
-//   Future<String> _recoverPassword(String name) {
-//     debugPrint('Name: $name');
-//     return Future.delayed(loginTime).then((_) {
-//       if (!users.containsKey(name)) {
-//         return 'User not exists';
-//       }
-//       return 'null';
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return FlutterLogin(
-//       title: 'Digital ID',
-//       // logo: const AssetImage('assets/daveragoose.png'),
-//       onLogin: _authUser,
-//       onSignup: _signupUser,
-//       onSubmitAnimationCompleted: () {
-//         Navigator.of(context).pushReplacement(MaterialPageRoute(
-//           builder: (context) => CreditCardScreen(),
-//         ));
-//       },
-//       onRecoverPassword: _recoverPassword,
-//     );
-//   }
-// }

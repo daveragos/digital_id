@@ -14,7 +14,7 @@ class ProfilePage extends ConsumerStatefulWidget {
 class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(userProvider);
+    final user = ref.watch(userStateProvider);
     final companies = ref.watch(companyProvider);
     return Scaffold(
       appBar: AppBar(
@@ -86,7 +86,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       title: Text(company.name),
                       subtitle: Text(company.role),
                       trailing: IconButton(
-                        icon: Icon(Icons.arrow_forward_ios_sharp),
+                        icon: const Icon(Icons.arrow_forward_ios_sharp),
                         onPressed: () {
                           //setting the index of the touched to selectedCompanyProvider and popping the page
                           final index = companies.indexOf(company);

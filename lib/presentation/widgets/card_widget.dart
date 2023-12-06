@@ -11,7 +11,7 @@ class CardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
+    final user = ref.watch(userStateProvider);
     final companies = ref.watch(companyProvider);
     const style = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
     final color = context.colorScheme;
